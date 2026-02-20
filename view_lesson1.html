@@ -1,181 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 1: Introduction</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Scrollable container */
-    .lesson-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1: Introduction</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.lesson-container { display: flex; flex-direction: column; gap: 15px; }
 
-    /* Search bar with icon */
-    .search-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 250px; /* same as button width */
-      margin-bottom: 20px;
-    }
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 20px;
+}
 
-    .search-wrapper input {
-      width: 100%;
-      padding: 12px 40px 12px 15px;
-      border-radius: 50px;
-      border: 2px solid #1E88E5;
-      font-size: 16px;
-      outline: none;
-    }
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border-radius: 50px;
+  border: 2px solid #1E88E5;
+  font-size: 16px;
+  outline: none;
+}
 
-    .search-wrapper i {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #1E88E5;
-      font-size: 18px;
-      pointer-events: none;
-    }
+.search-wrapper svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #1E88E5;
+  pointer-events: none;
+}
 
-    /* Scrollable lesson content */
-    .lesson-content {
-      max-height: 75vh;
-      overflow-y: scroll;
-      padding-right: 10px;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      border-radius: 10px;
-    }
+.lesson-content {
+  max-height: 75vh;
+  overflow-y: scroll;
+  padding-right: 10px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+}
 
-    /* Custom scrollbar */
-    .lesson-content::-webkit-scrollbar {
-      width: 12px;
-    }
-    .lesson-content::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-    .lesson-content::-webkit-scrollbar-thumb {
-      background: #1E88E5;
-      border-radius: 10px;
-    }
-    .lesson-content::-webkit-scrollbar-thumb:hover {
-      background: #1565C0;
-    }
+.lesson-content::-webkit-scrollbar { width: 12px; }
+.lesson-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb { background: #1E88E5; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb:hover { background: #1565C0; }
 
-    /* Back button */
-    .btn-back {
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #1E88E5;
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 50px;
-      transition: 0.3s ease;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    }
+.btn-back {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #1E88E5;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: 0.3s ease;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
 
-    .btn-back:hover {
-      background-color: #1565C0;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    }
+.btn-back:hover {
+  background-color: #1565C0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
 
-    @media (max-width: 480px) {
-      .btn-back {
-        width: 90%;
-        padding: 12px;
-        margin-bottom: 20px;
-      }
-      .search-wrapper {
-        max-width: 90%;
-      }
-    }
+.lesson-section { margin-bottom: 20px; }
 
-    /* Hide lesson elements when filtered */
-    .lesson-section {
-      margin-bottom: 20px;
-    }
-  </style>
-  <!-- Font Awesome for search icon -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+@media (max-width:480px){
+  .btn-back { width:90%; padding:12px; margin-bottom:20px; }
+  .search-wrapper { max-width:90%; }
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="card lesson-container">
-      <!-- Back button -->
-      <a href="main.html" class="btn-back">← Back to Lessons</a>
+<div class="container">
+  <div class="card lesson-container">
+    <a href="main.html" class="btn-back">← Back to Lessons</a>
 
-      <!-- Search bar with icon -->
-      <div class="search-wrapper">
-        <input type="text" id="searchInput" placeholder="Search in lesson...">
-        <i class="fas fa-search"></i>
-      </div>
+    <!-- Search with inline SVG -->
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="Search in lesson...">
+      <svg viewBox="0 0 512 512">
+        <path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.7C451 96.5 354.5 0 229.5 0S8 96.5 8 214.3s96.5 214.3 214.3 214.3c49.2 0 93.8-17.3 128.7-45.7l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9zM229.3 368.7c-85.5 0-155-69.5-155-155s69.5-155 155-155 155 69.5 155 155-69.5 155-155 155z"/>
+      </svg>
+    </div>
 
-      <!-- Scrollable lesson content -->
-      <div class="lesson-content" id="lessonContent">
-        
-        <div class="lesson-section">
-          <h2>Lesson 1: Introduction</h2>
-          <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
-        </div>
-
-        <div class="lesson-section">
-          <h3>Key Concepts:</h3>
-          <ul>
-            <li><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</li>
-            <li><strong>Concept 2:</strong> Core principles and their applications.</li>
-            <li><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</li>
-            <li><strong>Concept 4:</strong> Historical background and context of the subject.</li>
-            <li><strong>Concept 5:</strong> Practical relevance and application in daily life.</li>
-          </ul>
-        </div>
-
-        <div class="lesson-section">
-          <h3>Overview:</h3>
-          <p>Understanding the foundation of this subject is crucial. Here, we will explore definitions, history, and the context that led to the development of these concepts. By the end of this lesson, you should be able to:</p>
-          <ol>
-            <li>Explain the importance of the topic.</li>
-            <li>Identify the key concepts.</li>
-            <li>Apply the principles to simple examples.</li>
-            <li>Recognize historical and real-life applications.</li>
-            <li>Discuss the topic confidently with peers.</li>
-          </ol>
-        </div>
-
-        <div class="lesson-section">
-          <h3>Additional Notes:</h3>
-          <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations. Practice is key! Review the examples carefully and attempt exercises to reinforce understanding.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Integer sit amet felis a urna gravida gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed non dolor sed lorem tristique venenatis.</p>
-        </div>
-
-      </div>
+    <div class="lesson-content" id="lessonContent">
+      <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts.</p>
+      <p><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</p>
+      <p><strong>Concept 2:</strong> Core principles and their applications.</p>
+      <p><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</p>
+      <p><strong>Concept 4:</strong> Historical background and context of the subject.</p>
+      <p><strong>Concept 5:</strong> Practical relevance and application in daily life.</p>
+      <p>Understanding the foundation of this subject is crucial. Here, we will explore definitions, history, and context.</p>
+      <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Integer sit amet felis a urna gravida gravida.</p>
     </div>
   </div>
+</div>
 
-  <script>
-    // Functional search: filter lesson sections
-    const searchInput = document.getElementById('searchInput');
-    const lessonSections = document.querySelectorAll('.lesson-section');
+<script>
+const searchInput = document.getElementById('searchInput');
+const lessonContent = document.getElementById('lessonContent');
+const paragraphs = lessonContent.querySelectorAll('p');
 
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase();
+searchInput.addEventListener('input', function(){
+  const query = this.value.toLowerCase();
+  paragraphs.forEach(p => {
+    if(p.textContent.toLowerCase().includes(query)) {
+      p.style.display = 'block';
+    } else {
+      p.style.display = 'none';
+    }
+  });
+});
 
-      lessonSections.forEach(section => {
-        const text = section.textContent.toLowerCase();
-        if(text.includes(query)) {
-          section.style.display = 'block';
-        } else {
-          section.style.display = 'none';
-        }
-      });
-    });
-  </script>
+// Hide keyboard on enter for mobile
+searchInput.addEventListener('keypress', function(e){
+  if(e.key === 'Enter'){
+    this.blur(); // dismiss keyboard
+  }
+});
+</script>
 </body>
 </html>
