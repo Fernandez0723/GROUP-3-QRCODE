@@ -7,12 +7,45 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* Scrollable container */
+    .lesson-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px 15px;
+      border-radius: 50px;
+      border: 2px solid #1E88E5;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
     .lesson-content {
-      margin-top: 20px;
+      max-height: 75vh; /* Scroll height */
+      overflow-y: scroll;
+      padding-right: 10px;
       line-height: 1.6;
-      max-height: 80vh; /* height limit for scroll */
-      overflow-y: auto; /* vertical scroll */
-      padding-right: 10px; /* space for scrollbar */
+      scroll-behavior: smooth;
+      border-radius: 10px;
+    }
+
+    /* Custom scrollbar */
+    .lesson-content::-webkit-scrollbar {
+      width: 12px;
+    }
+    .lesson-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .lesson-content::-webkit-scrollbar-thumb {
+      background: #1E88E5;
+      border-radius: 10px;
+    }
+    .lesson-content::-webkit-scrollbar-thumb:hover {
+      background: #1565C0;
     }
 
     /* Polished back button */
@@ -36,22 +69,6 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
-    /* Custom scrollbar */
-    .lesson-content::-webkit-scrollbar {
-      width: 8px;
-    }
-    .lesson-content::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 5px;
-    }
-    .lesson-content::-webkit-scrollbar-thumb {
-      background: #1E88E5;
-      border-radius: 5px;
-    }
-    .lesson-content::-webkit-scrollbar-thumb:hover {
-      background: #1565C0;
-    }
-
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .btn-back {
@@ -59,15 +76,23 @@
         padding: 12px;
         margin-bottom: 20px;
       }
+      .search-bar {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card">
+    <div class="card lesson-container">
+      <!-- Back button -->
       <a href="main.html" class="btn-back">← Back to Lessons</a>
 
-      <div class="lesson-content">
+      <!-- Search bar -->
+      <input type="text" id="searchInput" class="search-bar" placeholder="Search in lesson...">
+
+      <!-- Scrollable content -->
+      <div class="lesson-content" id="lessonContent">
         <h2>Lesson 1: Introduction</h2>
         <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
         
@@ -97,5 +122,23 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Simple search filter
+    const searchInput = document.getElementById('searchInput');
+    const lessonContent = document.getElementById('lessonContent');
+
+    searchInput.addEventListener('input', function() {
+      const filter = searchInput.value.toLowerCase();
+      const nodes = lessonContent.querySelectorAll('h2, h3, p, li, ol, ul');
+      nodes.forEach(node => {
+        if(node.textContent.toLowerCase().includes(filter)) {
+          node.style.display = '';
+        } else {
+          node.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
