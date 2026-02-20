@@ -24,15 +24,21 @@
   outline: none;
 }
 
-.search-wrapper svg {
+.search-wrapper button {
   position: absolute;
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-wrapper svg {
   width: 20px;
   height: 20px;
   fill: #1E88E5;
-  pointer-events: none;
 }
 
 .lesson-content {
@@ -71,6 +77,10 @@
 
 .lesson-section { margin-bottom: 20px; }
 
+.highlight {
+  background-color: #FFEB3B;
+}
+
 @media (max-width:480px){
   .btn-back { width:90%; padding:12px; margin-bottom:20px; }
   .search-wrapper { max-width:90%; }
@@ -82,16 +92,18 @@
   <div class="card lesson-container">
     <a href="main.html" class="btn-back">← Back to Lessons</a>
 
-    <!-- Search with inline SVG -->
+    <!-- Search with icon button -->
     <div class="search-wrapper">
       <input type="text" id="searchInput" placeholder="Search in lesson...">
-      <svg viewBox="0 0 512 512">
-        <path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.7C451 96.5 354.5 0 229.5 0S8 96.5 8 214.3s96.5 214.3 214.3 214.3c49.2 0 93.8-17.3 128.7-45.7l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9zM229.3 368.7c-85.5 0-155-69.5-155-155s69.5-155 155-155 155 69.5 155 155-69.5 155-155 155z"/>
-      </svg>
+      <button id="searchBtn">
+        <svg viewBox="0 0 512 512">
+          <path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.7C451 96.5 354.5 0 229.5 0S8 96.5 8 214.3s96.5 214.3 214.3 214.3c49.2 0 93.8-17.3 128.7-45.7l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9zM229.3 368.7c-85.5 0-155-69.5-155-155s69.5-155 155-155 155 69.5 155 155-69.5 155-155 155z"/>
+        </svg>
+      </button>
     </div>
 
     <div class="lesson-content" id="lessonContent">
-      <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts.</p>
+      <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
       <p><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</p>
       <p><strong>Concept 2:</strong> Core principles and their applications.</p>
       <p><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</p>
@@ -107,24 +119,31 @@
 
 <script>
 const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
 const lessonContent = document.getElementById('lessonContent');
 const paragraphs = lessonContent.querySelectorAll('p');
 
-searchInput.addEventListener('input', function(){
-  const query = this.value.toLowerCase();
-  paragraphs.forEach(p => {
+// Function to scroll to first match
+function scrollToMatch() {
+  const query = searchInput.value.toLowerCase();
+  if(!query) return;
+  
+  for(let p of paragraphs) {
     if(p.textContent.toLowerCase().includes(query)) {
-      p.style.display = 'block';
-    } else {
-      p.style.display = 'none';
+      p.scrollIntoView({behavior:'smooth', block:'center'});
+      break; // scroll to first match only
     }
-  });
-});
+  }
+}
 
-// Hide keyboard on enter for mobile
+// Trigger on button click
+searchBtn.addEventListener('click', scrollToMatch);
+
+// Trigger on Enter key
 searchInput.addEventListener('keypress', function(e){
   if(e.key === 'Enter'){
-    this.blur(); // dismiss keyboard
+    scrollToMatch();
+    this.blur(); // hide keyboard on mobile
   }
 });
 </script>
