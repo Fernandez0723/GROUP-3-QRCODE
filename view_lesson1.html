@@ -48,12 +48,6 @@
       border-radius: 10px;
     }
 
-    /* Highlighted words */
-    .highlight {
-      background-color: #FFEB3B;
-      border-radius: 3px;
-    }
-
     /* Custom scrollbar */
     .lesson-content::-webkit-scrollbar {
       width: 12px;
@@ -149,19 +143,10 @@
   </div>
 
   <script>
+    // Search input currently only for UX (icon), no highlight
     const searchInput = document.getElementById('searchInput');
-    const lessonContent = document.getElementById('lessonContent');
-
     searchInput.addEventListener('input', function() {
-      const filter = searchInput.value.toLowerCase();
-      // Remove previous highlights
-      lessonContent.innerHTML = lessonContent.textContent;
-
-      if(filter === '') return;
-
-      // Highlight all occurrences
-      const html = lessonContent.textContent.replace(new RegExp(`(${filter})`, 'gi'), '<span class="highlight">$1</span>');
-      lessonContent.innerHTML = html;
+      // optional: you could implement filtering in the future
     });
   </script>
 </body>
