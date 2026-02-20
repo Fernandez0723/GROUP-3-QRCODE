@@ -1,12 +1,20 @@
 Web-Based Lesson Portal with QR Code Access
 
+
 Course: Filipino – 3rd Year BSIT (Irregular)
+
 Author/Member: Zhian'Shenawer James Fernandez
+
 Project Role: Developer / Coder
+
 Team Leader: Jasmin Ignacio
+
 Instructor: Ma’am Angel May B. Tano
+
 Age: 24 years old
+
 Project Type: Web-Based Application
+
 Technologies Used: HTML, CSS, JavaScript, PHP, MySQL, QR Code Generator
 
 Project Overview
