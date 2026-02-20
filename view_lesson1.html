@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 1: Introductions</title>
+  <title>Lesson 1: Introduction</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Center the lesson content */
+    /* Scrollable container */
     .lesson-content {
       margin-top: 20px;
       line-height: 1.6;
+      max-height: 80vh; /* height limit for scroll */
+      overflow-y: auto; /* vertical scroll */
+      padding-right: 10px; /* space for scrollbar */
     }
 
-    /* Improved button style */
+    /* Polished back button */
     .btn-back {
       display: inline-block;
       padding: 12px 25px;
@@ -33,6 +36,22 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
+    /* Custom scrollbar */
+    .lesson-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .lesson-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+    .lesson-content::-webkit-scrollbar-thumb {
+      background: #1E88E5;
+      border-radius: 5px;
+    }
+    .lesson-content::-webkit-scrollbar-thumb:hover {
+      background: #1565C0;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .btn-back {
@@ -46,11 +65,10 @@
 <body>
   <div class="container">
     <div class="card">
-      <!-- Polished button -->
       <a href="main.html" class="btn-back">← Back to Lessons</a>
 
       <div class="lesson-content">
-        <h2>Lesson 1: Introductions</h2>
+        <h2>Lesson 1: Introduction</h2>
         <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
         
         <h3>Key Concepts:</h3>
@@ -58,6 +76,8 @@
           <li><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</li>
           <li><strong>Concept 2:</strong> Core principles and their applications.</li>
           <li><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</li>
+          <li><strong>Concept 4:</strong> Historical background and context of the subject.</li>
+          <li><strong>Concept 5:</strong> Practical relevance and application in daily life.</li>
         </ul>
         
         <h3>Overview:</h3>
@@ -66,14 +86,16 @@
           <li>Explain the importance of the topic.</li>
           <li>Identify the key concepts.</li>
           <li>Apply the principles to simple examples.</li>
+          <li>Recognize historical and real-life applications.</li>
+          <li>Discuss the topic confidently with peers.</li>
         </ol>
 
         <h3>Additional Notes:</h3>
-        <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations. Practice is key!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.</p>
+        <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations. Practice is key! Review the examples carefully and attempt exercises to reinforce understanding.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Integer sit amet felis a urna gravida gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed non dolor sed lorem tristique venenatis.</p>
+        <p>Aliquam erat volutpat. Sed sit amet sapien ac nisl bibendum tincidunt. Vivamus nec turpis et justo imperdiet vehicula. Cras vel felis in libero volutpat fermentum. Ut euismod purus vel risus dapibus, at ullamcorper nisi bibendum. Mauris consequat lacus at lorem aliquet, eget tempor leo eleifend.</p>
       </div>
     </div>
   </div>
 </body>
 </html>
-
