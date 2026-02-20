@@ -77,10 +77,6 @@
 
 .lesson-section { margin-bottom: 20px; }
 
-.highlight {
-  background-color: #FFEB3B;
-}
-
 @media (max-width:480px){
   .btn-back { width:90%; padding:12px; margin-bottom:20px; }
   .search-wrapper { max-width:90%; }
@@ -92,7 +88,7 @@
   <div class="card lesson-container">
     <a href="main.html" class="btn-back">← Back to Lessons</a>
 
-    <!-- Search with icon button -->
+    <!-- Search with icon -->
     <div class="search-wrapper">
       <input type="text" id="searchInput" placeholder="Search in lesson...">
       <button id="searchBtn">
@@ -102,17 +98,43 @@
       </button>
     </div>
 
+    <!-- Lesson content divided into sections -->
     <div class="lesson-content" id="lessonContent">
-      <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
-      <p><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</p>
-      <p><strong>Concept 2:</strong> Core principles and their applications.</p>
-      <p><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</p>
-      <p><strong>Concept 4:</strong> Historical background and context of the subject.</p>
-      <p><strong>Concept 5:</strong> Practical relevance and application in daily life.</p>
-      <p>Understanding the foundation of this subject is crucial. Here, we will explore definitions, history, and context.</p>
-      <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Integer sit amet felis a urna gravida gravida.</p>
+
+      <div class="lesson-section">
+        <h2>Lesson 1: Introduction</h2>
+        <p>Welcome to Lesson 1. In this lesson, we will cover the basics and fundamental concepts that will guide you throughout the subject.</p>
+      </div>
+
+      <div class="lesson-section">
+        <h3>Key Concepts:</h3>
+        <ul>
+          <li><strong>Concept 1:</strong> Introduction to the topic and why it matters in real life.</li>
+          <li><strong>Concept 2:</strong> Core principles and their applications.</li>
+          <li><strong>Concept 3:</strong> Understanding key objectives and expected outcomes.</li>
+          <li><strong>Concept 4:</strong> Historical background and context of the subject.</li>
+          <li><strong>Concept 5:</strong> Practical relevance and application in daily life.</li>
+        </ul>
+      </div>
+
+      <div class="lesson-section">
+        <h3>Overview:</h3>
+        <p>Understanding the foundation of this subject is crucial. Here, we will explore definitions, history, and the context that led to the development of these concepts. By the end of this lesson, you should be able to:</p>
+        <ol>
+          <li>Explain the importance of the topic.</li>
+          <li>Identify the key concepts.</li>
+          <li>Apply the principles to simple examples.</li>
+          <li>Recognize historical and real-life applications.</li>
+          <li>Discuss the topic confidently with peers.</li>
+        </ol>
+      </div>
+
+      <div class="lesson-section">
+        <h3>Additional Notes:</h3>
+        <p>Remember to take notes as you read, and always try to relate the concepts to real-life situations. Practice is key! Review the examples carefully and attempt exercises to reinforce understanding.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Integer sit amet felis a urna gravida gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed non dolor sed lorem tristique venenatis.</p>
+      </div>
+
     </div>
   </div>
 </div>
@@ -121,29 +143,25 @@
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const lessonContent = document.getElementById('lessonContent');
-const paragraphs = lessonContent.querySelectorAll('p');
+const sections = lessonContent.querySelectorAll('.lesson-section');
 
-// Function to scroll to first match
 function scrollToMatch() {
   const query = searchInput.value.toLowerCase();
   if(!query) return;
-  
-  for(let p of paragraphs) {
-    if(p.textContent.toLowerCase().includes(query)) {
-      p.scrollIntoView({behavior:'smooth', block:'center'});
-      break; // scroll to first match only
+
+  for(let sec of sections){
+    if(sec.textContent.toLowerCase().includes(query)){
+      sec.scrollIntoView({behavior:'smooth', block:'start'});
+      break;
     }
   }
 }
 
-// Trigger on button click
 searchBtn.addEventListener('click', scrollToMatch);
-
-// Trigger on Enter key
 searchInput.addEventListener('keypress', function(e){
   if(e.key === 'Enter'){
     scrollToMatch();
-    this.blur(); // hide keyboard on mobile
+    this.blur(); // hide mobile keyboard
   }
 });
 </script>
