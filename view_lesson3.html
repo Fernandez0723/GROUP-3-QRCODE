@@ -1,42 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 3: Practice</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3: Practice</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.lesson-container { display: flex; flex-direction: column; gap: 15px; }
+
+/* Search bar wrapper */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 20px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border-radius: 50px;
+  border: 2px solid #1E88E5;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-wrapper button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-wrapper svg {
+  width: 20px;
+  height: 20px;
+  fill: #1E88E5;
+}
+
+.lesson-content {
+  max-height: 75vh;
+  overflow-y: scroll;
+  padding-right: 10px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  background: #fff;
+}
+
+.lesson-content::-webkit-scrollbar { width: 12px; }
+.lesson-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb { background: #1E88E5; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb:hover { background: #1565C0; }
+
+.btn-back {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #1E88E5;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: 0.3s ease;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn-back:hover {
+  background-color: #1565C0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.lesson-section { margin-bottom: 20px; }
+
+#searchMessage {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #e53935;
+}
+
+/* Responsive */
+@media (max-width:480px){
+  .btn-back { width:90%; padding:12px; margin-bottom:20px; }
+  .search-wrapper { max-width:90%; }
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <a href="main.html" class="btn">Back to Lessons</a>
-      <div class="lesson-content">
+<div class="container">
+  <div class="card lesson-container">
+    <a href="main.html" class="btn-back">← Back to Lessons</a>
+
+    <!-- Search with icon -->
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="Search in lesson...">
+      <button id="searchBtn">
+        <svg viewBox="0 0 512 512">
+          <path d="M505 442.7L405.3 343c28.4-34.9 45.7-79.5 45.7-128.7C451 96.5 354.5 0 229.5 0S8 96.5 8 214.3s96.5 214.3 214.3 214.3c49.2 0 93.8-17.3 128.7-45.7l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9zM229.3 368.7c-85.5 0-155-69.5-155-155s69.5-155 155-155 155 69.5 155 155-69.5 155-155 155z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Search message -->
+    <div id="searchMessage"></div>
+
+    <!-- Lesson content -->
+    <div class="lesson-content" id="lessonContent">
+
+      <div class="lesson-section">
         <h2>Lesson 3: Practice</h2>
         <p>This lesson focuses on exercises, practice problems, and quizzes to reinforce your understanding.</p>
-        
+      </div>
+
+      <div class="lesson-section">
         <h3>Practice Questions:</h3>
         <ul>
-          <li>Question 1: Solve problem X using the methods learned in Lesson 1.</li>
+          <li>Question 1: Solve problem X using methods learned in Lesson 1 and 2.</li>
           <li>Question 2: Analyze scenario Y and identify the correct approach.</li>
           <li>Question 3: Reflect on case study Z and summarize your findings.</li>
+          <li>Question 4: Apply core principles to a new example.</li>
+          <li>Question 5: Compare two solutions and discuss differences.</li>
         </ul>
+      </div>
 
+      <div class="lesson-section">
         <h3>Guidelines:</h3>
         <ul>
-          <li>Follow the step-by-step instructions carefully.</li>
+          <li>Follow step-by-step instructions carefully.</li>
           <li>Check your answers with reference solutions.</li>
           <li>Take notes on mistakes and how to correct them.</li>
+          <li>Work in groups if applicable for discussion.</li>
         </ul>
+      </div>
 
+      <div class="lesson-section">
         <h3>Extra Exercises:</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
         <ul>
           <li>Scenario-based problems</li>
           <li>Mini quizzes</li>
           <li>Group exercises (if applicable)</li>
+          <li>Additional case studies</li>
         </ul>
       </div>
+
     </div>
   </div>
+</div>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const lessonContent = document.getElementById('lessonContent');
+const sections = lessonContent.querySelectorAll('.lesson-section');
+const searchMessage = document.getElementById('searchMessage');
+
+let messageTimeout;
+
+function scrollToMatch() {
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) return;
+
+  let found = false;
+  for (let sec of sections) {
+    if (sec.textContent.toLowerCase().includes(query)) {
+      sec.scrollIntoView({behavior:'smooth', block:'start'});
+      found = true;
+      break;
+    }
+  }
+
+  if (found) {
+    searchMessage.textContent = "";
+    clearTimeout(messageTimeout);
+  } else {
+    searchMessage.textContent = `No results for "${searchInput.value}"`;
+    clearTimeout(messageTimeout);
+    messageTimeout = setTimeout(() => {
+      searchMessage.textContent = "";
+    }, 1500);
+  }
+}
+
+searchBtn.addEventListener('click', scrollToMatch);
+searchInput.addEventListener('keypress', function(e){
+  if(e.key === 'Enter'){
+    scrollToMatch();
+    this.blur();
+  }
+});
+searchInput.addEventListener('input', function(){
+  searchMessage.textContent = "";
+  clearTimeout(messageTimeout);
+});
+</script>
 </body>
 </html>
