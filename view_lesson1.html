@@ -161,6 +161,8 @@ const lessonContent = document.getElementById('lessonContent');
 const sections = lessonContent.querySelectorAll('.lesson-section');
 const searchMessage = document.getElementById('searchMessage');
 
+let messageTimeout;
+
 function scrollToMatch() {
   const query = searchInput.value.trim().toLowerCase();
   if (!query) return;
@@ -176,8 +178,13 @@ function scrollToMatch() {
 
   if (found) {
     searchMessage.textContent = ""; // clear message if found
+    clearTimeout(messageTimeout);
   } else {
     searchMessage.textContent = `No results for "${searchInput.value}"`;
+    clearTimeout(messageTimeout);
+    messageTimeout = setTimeout(() => {
+      searchMessage.textContent = "";
+    }, 1500); // mawawala after 1.5 seconds
   }
 }
 
@@ -191,6 +198,13 @@ searchInput.addEventListener('keypress', function(e){
     this.blur(); // hide mobile keyboard
   }
 });
+
+// Clear message if user types again
+searchInput.addEventListener('input', function(){
+  searchMessage.textContent = "";
+  clearTimeout(messageTimeout);
+});
 </script>
 </body>
 </html>
+
