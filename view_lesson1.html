@@ -6,63 +6,23 @@
 <title>Lesson 1: Introduction</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* -------------------- */
-/* CANVA-TYPE LESSON FRAME */
-/* -------------------- */
+.lesson-container { display: flex; flex-direction: column; gap: 15px; }
 
-.lesson-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background: linear-gradient(145deg, #ffffff, #f7f9fc);
-  border-radius: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  padding: 30px;
-  max-width: 900px;
-  margin: 30px auto;
-  transition: all 0.3s ease;
-}
-
-.lesson-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 25px 45px rgba(0,0,0,0.12);
-}
-
-.btn-back {
-  display: inline-block;
-  padding: 12px 25px;
-  background-color: #1E88E5;
-  color: #fff;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 50px;
-  transition: 0.3s ease;
-  text-align: center;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-}
-
-.btn-back:hover {
-  background-color: #1565C0;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-}
-
+/* Search bar wrapper */
 .search-wrapper {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  margin-bottom: 25px;
+  max-width: 250px;
+  margin-bottom: 20px;
 }
 
 .search-wrapper input {
   width: 100%;
-  padding: 12px 45px 12px 15px;
+  padding: 12px 40px 12px 15px;
   border-radius: 50px;
   border: 2px solid #1E88E5;
   font-size: 16px;
   outline: none;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .search-wrapper button {
@@ -77,73 +37,58 @@
 }
 
 .search-wrapper svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   fill: #1E88E5;
-  transition: fill 0.3s ease;
-}
-
-.search-wrapper button:hover svg {
-  fill: #1565C0;
 }
 
 .lesson-content {
   max-height: 75vh;
   overflow-y: scroll;
-  padding-right: 12px;
+  padding-right: 10px;
   line-height: 1.6;
   scroll-behavior: smooth;
-  border-radius: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  background: #fff;
 }
 
-.lesson-content::-webkit-scrollbar {
-  width: 12px;
-}
-.lesson-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-.lesson-content::-webkit-scrollbar-thumb {
-  background: #1E88E5;
-  border-radius: 10px;
-}
-.lesson-content::-webkit-scrollbar-thumb:hover {
-  background: #1565C0;
-}
+.lesson-content::-webkit-scrollbar { width: 12px; }
+.lesson-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb { background: #1E88E5; border-radius: 10px; }
+.lesson-content::-webkit-scrollbar-thumb:hover { background: #1565C0; }
 
-/* Canva-type sections */
-.lesson-section {
-  background: #ffffff;
-  padding: 22px 25px;
+.btn-back {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #1E88E5;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: 0.3s ease;
+  text-align: center;
   margin-bottom: 20px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-.lesson-section:hover {
+.btn-back:hover {
+  background-color: #1565C0;
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
 }
 
-.lesson-section h2,
-.lesson-section h3 {
-  margin-bottom: 15px;
-  color: #1E88E5;
-}
+.lesson-section { margin-bottom: 20px; }
 
-.lesson-section p,
-.lesson-section li {
-  font-size: 16px;
-  color: #333;
+#searchMessage {
+  text-align: center;
   margin-bottom: 10px;
+  font-weight: bold;
+  color: #e53935;
 }
 
-.lesson-section ul,
-.lesson-section ol {
-  padding-left: 20px;
-}
-
+/* Responsive */
 @media (max-width:480px){
   .btn-back { width:90%; padding:12px; margin-bottom:20px; }
   .search-wrapper { max-width:90%; }
@@ -164,6 +109,9 @@
         </svg>
       </button>
     </div>
+
+    <!-- Search message -->
+    <div id="searchMessage"></div>
 
     <!-- Lesson content divided into sections -->
     <div class="lesson-content" id="lessonContent">
@@ -211,20 +159,32 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const lessonContent = document.getElementById('lessonContent');
 const sections = lessonContent.querySelectorAll('.lesson-section');
+const searchMessage = document.getElementById('searchMessage');
 
 function scrollToMatch() {
-  const query = searchInput.value.toLowerCase();
-  if(!query) return;
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) return;
 
-  for(let sec of sections){
-    if(sec.textContent.toLowerCase().includes(query)){
+  let found = false;
+  for (let sec of sections) {
+    if (sec.textContent.toLowerCase().includes(query)) {
       sec.scrollIntoView({behavior:'smooth', block:'start'});
+      found = true;
       break;
     }
   }
+
+  if (found) {
+    searchMessage.textContent = ""; // clear message if found
+  } else {
+    searchMessage.textContent = `No results for "${searchInput.value}"`;
+  }
 }
 
+// Trigger on button click
 searchBtn.addEventListener('click', scrollToMatch);
+
+// Trigger on Enter key press
 searchInput.addEventListener('keypress', function(e){
   if(e.key === 'Enter'){
     scrollToMatch();
