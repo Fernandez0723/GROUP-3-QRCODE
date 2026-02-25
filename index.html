@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Portal - Week Lessons</title>
+<title>Lesson - Week 13</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #fdf6e3; /* soft background */
+    background: #fdf6e3;
     color: #333;
     display: flex;
     justify-content: center;
@@ -34,14 +34,14 @@
   .lesson-header h1 {
     font-size: 2em;
     font-weight: 700;
-    color: #f1c40f; /* Minions yellow */
+    color: #f1c40f;
     margin: 0;
   }
 
   .lesson-header h2 {
     font-size: 1.4em;
     font-weight: 600;
-    color: #0052cc; /* Minions blue */
+    color: #0052cc;
     margin-top: 8px;
   }
 
@@ -59,7 +59,6 @@
     margin: 12px 0;
   }
 
-  /* Responsive */
   @media(max-width:768px){
     .lesson-container{padding:30px 20px;}
     .lesson-header h1{font-size:1.8em;}
@@ -73,105 +72,26 @@
 </style>
 </head>
 <body>
-
-<div class="lesson-container" id="lesson-container">
+<div class="lesson-container">
   <div class="lesson-header">
-    <h1 id="week-title">Week 13</h1>
-    <h2 id="lesson-title">Understanding the Self – Eastern & Western Perspectives</h2>
+    <h1>Week 13</h1>
+    <h2>Understanding the Self – Eastern & Western Perspectives</h2>
   </div>
-  <div class="lesson-content" id="lesson-content">
-    <!-- Content will be injected dynamically -->
+
+  <div class="lesson-content">
+    <!-- Generate 100 dummy paragraphs -->
+    <script>
+      const lessonContentDiv = document.currentScript.parentNode;
+      for(let i=1; i<=100; i++){
+        const p = document.createElement("p");
+        p.textContent = `Paragraph ${i}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. 
+        Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. 
+        Fusce nec tellus sed augue semper porta. Mauris massa. ${i} This is example content for testing layout with long lesson text.`;
+        lessonContentDiv.appendChild(p);
+      }
+    </script>
   </div>
 </div>
-
-<script>
-  // Data for each week
-  const lessons = {
-    13: {
-      title: "Understanding the Self – Eastern & Western Perspectives",
-      content: `
-        <p>This week, we explore the concept of the self from two perspectives:</p>
-        <div class="highlight"><strong>Eastern Self:</strong> Interdependent, family-centered, harmonious, socially connected.</div>
-        <div class="highlight"><strong>Western Self:</strong> Independent, autonomous, focused on self-expression and individuality.</div>
-        <p>Activities:</p>
-        <ul>
-          <li>Compare collectivism vs individualism.</li>
-          <li>Analyze social roles in different cultures.</li>
-          <li>Create your personal reflection chart of Eastern vs Western self traits.</li>
-        </ul>
-      `
-    },
-    14: {
-      title: "Self-Reflection Techniques",
-      content: `
-        <p>This week focuses on self-reflection and personal growth:</p>
-        <div class="highlight"><strong>Journaling:</strong> Document daily thoughts and experiences.</div>
-        <div class="highlight"><strong>Meditation:</strong> Observe your mind without judgment.</div>
-        <p>Activities:</p>
-        <ul>
-          <li>Write 3 daily reflections.</li>
-          <li>Try a 5-minute mindfulness meditation.</li>
-          <li>Analyze patterns in your behavior.</li>
-        </ul>
-      `
-    },
-    15: {
-      title: "Identity and Social Roles",
-      content: `
-        <p>Exploring how society shapes identity:</p>
-        <div class="highlight"><strong>Social Roles:</strong> Examine your roles in family, school, and community.</div>
-        <div class="highlight"><strong>Identity Formation:</strong> Understand influences from culture and peers.</div>
-        <p>Activities:</p>
-        <ul>
-          <li>Make a social role map.</li>
-          <li>Reflect on which roles align with your personal identity.</li>
-        </ul>
-      `
-    },
-    16: {
-      title: "Autonomy and Decision-Making",
-      content: `
-        <p>This week covers independence and critical thinking:</p>
-        <div class="highlight"><strong>Decision-Making:</strong> Learn to weigh options logically and ethically.</div>
-        <div class="highlight"><strong>Autonomy:</strong> Understand how to act responsibly for yourself.</div>
-        <p>Activities:</p>
-        <ul>
-          <li>Practice making small daily decisions consciously.</li>
-          <li>Reflect on outcomes and adjust behavior.</li>
-        </ul>
-      `
-    },
-    17: {
-      title: "Self-Expression and Personal Growth",
-      content: `
-        <p>Focus on expressing your uniqueness:</p>
-        <div class="highlight"><strong>Creative Expression:</strong> Art, writing, or music.</div>
-        <div class="highlight"><strong>Feedback:</strong> Seek constructive feedback from peers or mentors.</div>
-        <p>Activities:</p>
-        <ul>
-          <li>Create a personal project showing your values and skills.</li>
-          <li>Reflect on growth since Week 13.</li>
-        </ul>
-      `
-    }
-  };
-
-  // Function to get week number from URL query
-  function getWeekFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('week') || '13'; // default Week 13
-  }
-
-  const currentWeek = getWeekFromURL();
-  const lesson = lessons[currentWeek];
-
-  if(lesson){
-    document.getElementById('week-title').innerText = `Week ${currentWeek}`;
-    document.getElementById('lesson-title').innerText = lesson.title;
-    document.getElementById('lesson-content').innerHTML = lesson.content;
-  } else {
-    document.getElementById('lesson-container').innerHTML = "<p>Lesson not found.</p>";
-  }
-</script>
 </body>
 </html>
