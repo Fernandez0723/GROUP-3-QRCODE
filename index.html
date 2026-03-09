@@ -8,25 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
     font-family:'Montserrat',sans-serif;
     height:100vh;
     overflow:hidden;
-
-    /* BACKGROUND IMAGE WITH SOFT OVERLAY */
     background: 
-        linear-gradient(rgba(255,182,193,0.3), rgba(255,182,193,0.3)), /* soft pink overlay */
+        linear-gradient(rgba(255,182,193,0.3), rgba(255,182,193,0.3)),
         url('Screenshot 2026-03-09 131651.png') no-repeat center center;
-    background-size:cover; /* scalable sa lahat ng devices */
+    background-size:cover;
 }
 
-/* FULLSCREEN GALLERY */
 .gallery{
     position:relative;
     width:100%;
@@ -36,7 +29,6 @@ body{
     align-items:center;
 }
 
-/* SLIDE */
 .slide{
     position:absolute;
     width:100%;
@@ -56,13 +48,11 @@ body{
     transition: transform 1s ease;
 }
 
-/* DIFFERENT DELAYS */
 .slide:nth-child(1){animation-delay:0s;}
 .slide:nth-child(2){animation-delay:5s;}
 .slide:nth-child(3){animation-delay:10s;}
 .slide:nth-child(4){animation-delay:15s;}
 
-/* FADE ANIMATION */
 @keyframes fadeSlide{
     0%{opacity:0;}
     10%{opacity:1;}
@@ -71,7 +61,6 @@ body{
     100%{opacity:0;}
 }
 
-/* CENTRAL LOVE TEXT */
 .love-center{
     position:absolute;
     top:50%;
@@ -89,10 +78,9 @@ body{
     font-family: 'Fredoka', sans-serif;
     padding:10px 20px;
     border-radius:25px;
-    background: rgba(255,255,255,0.05); /* light transparency para readable */
+    background: rgba(255,255,255,0.05);
 }
 
-/* HEARTS */
 .heart{
     position:absolute;
     bottom:-50px;
@@ -106,7 +94,6 @@ body{
     100%{transform:translateY(-100vh) scale(1.5);opacity:0;}
 }
 
-/* RESPONSIVE HEARTS & TEXT */
 @media (max-width:1024px){
     .heart{font-size:18px;}
     .love-center{font-size:2.5em; padding:8px 16px;}
@@ -121,24 +108,21 @@ body{
 }
 </style>
 </head>
-
 <body>
 
-<!-- BACKGROUND MUSIC -->
-<audio autoplay loop>
+<!-- AUDIO ELEMENT -->
+<audio id="bgMusic" loop autoplay muted playsinline>
     <source src="El Manu & Jessy Kang - Tahanan (Wedding Version) (Lyrics).mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
-<!-- CENTRAL LOVE TEXT 
-<div class="love-center">Our Memories ❤️</div>-->
+<div class="love-center">Our Memories ❤️</div>
 
-<!-- IMAGE GALLERY -->
 <div class="gallery">
     <div class="slide"><img src="images/b959dbc9-c842-4ba0-a21d-ff07cb15d835.jpg" alt="Slide 1"></div>
     <div class="slide"><img src="images/3809fd1d-9420-4b1b-9f18-58d72aa67849.jpg" alt="Slide 2"></div>
     <div class="slide"><img src="images/92b7b00c-4210-444b-b044-fa8436daa88f.jpg" alt="Slide 3"></div>
-    <div class="slide"><img src="images/8fd43986-d204-4f18-9fe0-e9cb0397f7b3.jpg" alt="Slide 4"></div>
+    <div class="slide"><img src="images/5ae1ca07-dcc0-4235-85d7-e207725396b9.jpg" alt="Slide 4"></div>
 </div>
 
 <script>
@@ -161,8 +145,15 @@ function createHeart(){
 }
 
 setInterval(createHeart,500);
-</script>
 
+/* UNMUTE & PLAY MUSIC AFTER PAGE LOAD */
+window.addEventListener('load', () => {
+    const music = document.getElementById('bgMusic');
+    music.muted = false;
+    music.play().catch(e => {
+        console.log("Autoplay failed, may need user interaction", e);
+    });
+});
+</script>
 </body>
 </html>
-
