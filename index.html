@@ -3,229 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 13 Lesson & Team Profiles</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Our Memories ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #fdf6e3;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
 
-  /* Week / Lesson Wrapper */
-  .lesson-wrapper {
-    max-width: 900px;
-    width: 100%;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    padding: 40px;
-    margin-bottom: 40px;
-  }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-  .lesson-wrapper h1 {
-    font-size: 2em;
-    font-weight: 700;
-    color: #f1c40f;
-    text-align: center;
-    margin-bottom: 10px;
-  }
+body{
+font-family:'Montserrat',sans-serif;
+height:100vh;
+overflow:hidden;
+background:black;
+}
 
-  .lesson-wrapper h2 {
-    font-size: 1.4em;
-    font-weight: 600;
-    color: #0052cc;
-    text-align: center;
-    margin-bottom: 25px;
-  }
+/* FULLSCREEN GALLERY */
 
-  .lesson-content p {
-    font-size: 1em;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
+.gallery{
+position:relative;
+width:100%;
+height:100vh;
+}
 
-  /* Profile Wrapper (Separate) */
-  .profile-wrapper {
-    max-width: 900px;
-    width: 100%;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    padding: 40px;
-  }
+/* IMAGES */
 
-  .profile-wrapper h3 {
-    text-align: center;
-    color: #0052cc;
-    margin-bottom: 30px;
-  }
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+opacity:0;
+animation:fadeSlide 20s infinite;
+}
 
-  /* Single vertical profiles (Instructor + Leader) */
-  .single-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-  }
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-  .single-profile img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #f1c40f;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    margin-bottom: 10px;
-  }
+/* DIFFERENT DELAYS */
 
-  .single-profile .name {
-    font-weight: 600;
-    color: #0052cc;
-    font-size: 1.1em;
-  }
+.slide:nth-child(1){animation-delay:0s;}
+.slide:nth-child(2){animation-delay:5s;}
+.slide:nth-child(3){animation-delay:10s;}
+.slide:nth-child(4){animation-delay:15s;}
 
-  .single-profile .role {
-    font-size: 0.95em;
-    color: #333;
-  }
+/* FADE ANIMATION */
 
-  /* Member Groups */
-  .members-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-  }
+@keyframes fadeSlide{
 
-  .member-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 150px;
-  }
+0%{
+opacity:0;
+transform:scale(1.1);
+}
 
-  .member-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #f1c40f;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-  }
+10%{
+opacity:1;
+}
 
-  .member-card img:hover {
-    transform: scale(1.05);
-  }
+25%{
+opacity:1;
+}
 
-  .member-card .name {
-    margin-top: 8px;
-    font-weight: 600;
-    color: #0052cc;
-  }
+35%{
+opacity:0;
+}
 
-  .member-card .role {
-    font-size: 0.9em;
-    color: #333;
-  }
+100%{
+opacity:0;
+}
 
-  @media(max-width:768px){
-    .single-profile img, .member-card img{width:100px;height:100px;}
-    .members-group{gap:20px;}
-  }
+}
 
-  @media(max-width:480px){
-    .single-profile img, .member-card img{width:80px;height:80px;}
-    .members-group{gap:15px;}
-  }
+/* HEART ANIMATION */
+
+.heart{
+position:absolute;
+bottom:-50px;
+color:red;
+font-size:25px;
+animation:floatHeart 6s linear infinite;
+}
+
+@keyframes floatHeart{
+
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+
+100%{
+transform:translateY(-100vh) scale(1.5);
+opacity:0;
+}
+
+}
 
 </style>
 </head>
+
 <body>
 
-<!-- Lesson Section -->
-<div class="lesson-wrapper">
-  <h1>Week 13</h1>
-  <h2>Understanding the Self – Eastern & Western Perspectives</h2>
+<div class="gallery">
 
-  <div class="lesson-content" id="lesson-content">
-    <script>
-      const lessonContentDiv = document.currentScript.parentNode;
-      for(let i=1; i<=50; i++){
-        const p = document.createElement("p");
-        p.textContent = `Paragraph ${i}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. 
-        Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. 
-        Fusce nec tellus sed augue semper porta. Mauris massa. ${i} Example long lesson content for testing.`;
-        lessonContentDiv.appendChild(p);
-      }
-    </script>
-  </div>
+<div class="slide">
+<img src="images/pic1.jpg">
 </div>
 
-<!-- Profile Section (Separate Wrapper) -->
-<div class="profile-wrapper">
-  <h3>Team Profiles</h3>
+<div class="slide">
+<img src="images/pic2.jpg">
+</div>
 
-  <!-- Instructor -->
-  <div class="single-profile">
-    <img src="images/instructor.jpg" alt="Instructor">
-    <div class="name">Ma'am Angel May B. Tano</div>
-    <div class="role">Instructor</div>
-  </div>
+<div class="slide">
+<img src="images/pic3.jpg">
+</div>
 
-  <!-- Leader -->
-  <div class="single-profile">
-    <img src="images/leader.jpg" alt="Leader">
-    <div class="name">Jasmin Ignacio</div>
-    <div class="role">Leader</div>
-  </div>
-
-  <!-- Members Group 1 -->
-  <div class="members-group">
-    <div class="member-card">
-      <img src="images/member1.jpg" alt="Member 1">
-      <div class="name">James Fernandez</div>
-      <div class="role">Member</div>
-    </div>
-    <div class="member-card">
-      <img src="images/member2.jpg" alt="Member 2">
-      <div class="name">Maria Cruz</div>
-      <div class="role">Member</div>
-    </div>
-    <div class="member-card">
-      <img src="images/member3.jpg" alt="Member 3">
-      <div class="name">John Doe</div>
-      <div class="role">Member</div>
-    </div>
-  </div>
-
-  <!-- Members Group 2 -->
-  <div class="members-group">
-    <div class="member-card">
-      <img src="images/member4.jpg" alt="Member 4">
-      <div class="name">Ana Santos</div>
-      <div class="role">Member</div>
-    </div>
-    <div class="member-card">
-      <img src="images/member5.jpg" alt="Member 5">
-      <div class="name">Peter Lim</div>
-      <div class="role">Member</div>
-    </div>
-    <div class="member-card">
-      <img src="images/member6.jpg" alt="Member 6">
-      <div class="name">Carla Reyes</div>
-      <div class="role">Member</div>
-    </div>
-  </div>
+<div class="slide">
+<img src="images/pic4.jpg">
+</div>
 
 </div>
+
+<script>
+
+/* HEART GENERATOR */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*20)+"px";
+
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+setInterval(createHeart,500);
+
+</script>
+
 </body>
 </html>
