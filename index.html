@@ -63,11 +63,17 @@ body{
     position:absolute;
     width:100%;
     height:100%;
-    opacity:0;
     display:flex;
     justify-content:center;
     align-items:center;
-    animation:fadeSlide 160s infinite;
+    opacity:0;
+    z-index:0;
+    transition: opacity 1s ease-in-out; /* smooth fade */
+}
+
+.slide.active{
+    opacity:1;
+    z-index:1;
 }
 
 .slide img{
@@ -75,49 +81,6 @@ body{
     max-height:100%;
     object-fit:contain;
     object-position:center center;
-    transition: transform 1s ease;
-}
-
-/* DIFFERENT DELAYS FOR 32 SLIDES */
-.slide:nth-child(1){animation-delay:0s;}
-.slide:nth-child(2){animation-delay:5s;}
-.slide:nth-child(3){animation-delay:10s;}
-.slide:nth-child(4){animation-delay:15s;}
-.slide:nth-child(5){animation-delay:20s;}
-.slide:nth-child(6){animation-delay:25s;}
-.slide:nth-child(7){animation-delay:30s;}
-.slide:nth-child(8){animation-delay:35s;}
-.slide:nth-child(9){animation-delay:40s;}
-.slide:nth-child(10){animation-delay:45s;}
-.slide:nth-child(11){animation-delay:50s;}
-.slide:nth-child(12){animation-delay:55s;}
-.slide:nth-child(13){animation-delay:60s;}
-.slide:nth-child(14){animation-delay:65s;}
-.slide:nth-child(15){animation-delay:70s;}
-.slide:nth-child(16){animation-delay:75s;}
-.slide:nth-child(17){animation-delay:80s;}
-.slide:nth-child(18){animation-delay:85s;}
-.slide:nth-child(19){animation-delay:90s;}
-.slide:nth-child(20){animation-delay:95s;}
-.slide:nth-child(21){animation-delay:100s;}
-.slide:nth-child(22){animation-delay:105s;}
-.slide:nth-child(23){animation-delay:110s;}
-.slide:nth-child(24){animation-delay:115s;}
-.slide:nth-child(25){animation-delay:120s;}
-.slide:nth-child(26){animation-delay:125s;}
-.slide:nth-child(27){animation-delay:130s;}
-.slide:nth-child(28){animation-delay:135s;}
-.slide:nth-child(29){animation-delay:140s;}
-.slide:nth-child(30){animation-delay:145s;}
-.slide:nth-child(31){animation-delay:150s;}
-.slide:nth-child(32){animation-delay:155s;}
-
-@keyframes fadeSlide{
-    0%{opacity:0;}
-    3%{opacity:1;}
-    8%{opacity:1;}
-    11%{opacity:0;}
-    100%{opacity:0;}
 }
 
 /* HEARTS */
@@ -134,15 +97,9 @@ body{
     100%{transform:translateY(-100vh) scale(1.5);opacity:0;}
 }
 
-@media (max-width:1024px){
-    .heart{font-size:18px;}
-}
-@media(max-width:768px){
-    .heart{font-size:16px;}
-}
-@media(max-width:480px){
-    .heart{font-size:14px;}
-}
+@media (max-width:1024px){.heart{font-size:18px;}}
+@media(max-width:768px){.heart{font-size:16px;}}
+@media(max-width:480px){.heart{font-size:14px;}}
 </style>
 </head>
 <body>
@@ -161,7 +118,7 @@ body{
 
 <!-- IMAGE GALLERY -->
 <div class="gallery">
-    <div class="slide"><img src="images/1st.jpg" alt="Slide 1"></div>
+    <div class="slide active"><img src="images/1st.jpg" alt="Slide 1"></div>
     <div class="slide"><img src="images/2nd.jpg" alt="Slide 2"></div>
     <div class="slide"><img src="images/3rd.jpg" alt="Slide 3"></div>
     <div class="slide"><img src="images/4rth.jpg" alt="Slide 4"></div>
@@ -212,18 +169,24 @@ function createHeart(){
     document.body.appendChild(heart);
     setTimeout(()=>{ heart.remove(); },7000);
 }
-
 setInterval(createHeart,500);
 
 /* MUSIC PLAY & STOP */
 const bgMusic = document.getElementById('bgMusic');
-document.getElementById('playBtn').addEventListener('click', ()=>{
-    bgMusic.play();
-});
-document.getElementById('stopBtn').addEventListener('click', ()=>{
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-});
+document.getElementById('playBtn').addEventListener('click', ()=>{ bgMusic.play(); });
+document.getElementById('stopBtn').addEventListener('click', ()=>{ bgMusic.pause(); bgMusic.currentTime=0; });
+
+/* SLIDE SHOW LOGIC */
+const slides = document.querySelectorAll('.slide');
+let currentIndex = 0;
+const totalSlides = slides.length;
+const slideInterval = 5000; // 5 seconds per slide
+
+setInterval(()=>{
+    slides[currentIndex].classList.remove('active'); // fade out current
+    currentIndex = (currentIndex+1) % totalSlides;
+    slides[currentIndex].classList.add('active'); // fade in next
+}, slideInterval);
 </script>
 
 </body>
