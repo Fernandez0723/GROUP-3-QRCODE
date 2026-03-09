@@ -18,7 +18,12 @@ body{
     font-family:'Montserrat',sans-serif;
     height:100vh;
     overflow:hidden;
-    background:black;
+
+    /* BACKGROUND IMAGE WITH SOFT OVERLAY */
+    background: 
+        linear-gradient(rgba(255,182,193,0.3), rgba(255,182,193,0.3)), /* soft pink overlay */
+        url('Screenshot 2026-03-09 131651.png') no-repeat center center;
+    background-size:cover; /* scalable sa lahat ng devices */
 }
 
 /* FULLSCREEN GALLERY */
@@ -84,7 +89,7 @@ body{
     font-family: 'Fredoka', sans-serif;
     padding:10px 20px;
     border-radius:25px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.05); /* light transparency para readable */
 }
 
 /* HEARTS */
@@ -101,7 +106,7 @@ body{
     100%{transform:translateY(-100vh) scale(1.5);opacity:0;}
 }
 
-/* RESPONSIVE HEARTS */
+/* RESPONSIVE HEARTS & TEXT */
 @media (max-width:1024px){
     .heart{font-size:18px;}
     .love-center{font-size:2.5em; padding:8px 16px;}
@@ -160,4 +165,3 @@ setInterval(createHeart,500);
 
 </body>
 </html>
-
