@@ -16,7 +16,7 @@
 
 body{
     font-family:'Montserrat',sans-serif;
-    min-height:100vh;
+    height:100vh;
     overflow:hidden;
     background:black;
 }
@@ -25,23 +25,29 @@ body{
 .gallery{
     position:relative;
     width:100%;
-    min-height:100vh;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* IMAGES */
+/* SLIDE */
 .slide{
     position:absolute;
     width:100%;
     height:100%;
     opacity:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     animation:fadeSlide 20s infinite;
 }
 
 .slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover; /* maintain aspect ratio and fill */
-    object-position:center center; /* always center */
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain; /* Laging makita buong image */
+    object-position:center center;
 }
 
 /* DIFFERENT DELAYS */
@@ -54,7 +60,6 @@ body{
 @keyframes fadeSlide{
     0%{
         opacity:0;
-        transform:scale(1.05);
     }
     10%{
         opacity:1;
@@ -70,7 +75,7 @@ body{
     }
 }
 
-/* HEART ANIMATION */
+/* HEARTS */
 .heart{
     position:absolute;
     bottom:-50px;
@@ -79,7 +84,6 @@ body{
     animation:floatHeart linear infinite;
 }
 
-/* FLOAT HEART */
 @keyframes floatHeart{
     0%{
         transform:translateY(0) scale(1);
@@ -91,26 +95,15 @@ body{
     }
 }
 
-/* RESPONSIVE */
-
-/* Tablets */
+/* RESPONSIVE HEARTS */
 @media (max-width:1024px){
-    .heart{
-        font-size:18px;
-    }
+    .heart{font-size:18px;}
 }
-
-/* Mobile */
 @media(max-width:768px){
-    .heart{
-        font-size:16px;
-    }
+    .heart{font-size:16px;}
 }
-
 @media(max-width:480px){
-    .heart{
-        font-size:14px;
-    }
+    .heart{font-size:14px;}
 }
 </style>
 </head>
@@ -125,21 +118,10 @@ body{
 
 <!-- IMAGE GALLERY -->
 <div class="gallery">
-    <div class="slide">
-        <img src="images/b959dbc9-c842-4ba0-a21d-ff07cb15d835.jpg" alt="Slide 1">
-    </div>
-
-    <div class="slide">
-        <img src="images/images/3809fd1d-9420-4b1b-9f18-58d72aa67849.jpg" alt="Slide 2">
-    </div>
-
-    <div class="slide">
-        <img src="images/92b7b00c-4210-444b-b044-fa8436daa88f.jpg" alt="Slide 3">
-    </div>
-
-    <div class="slide">
-        <img src="images/8fd43986-d204-4f18-9fe0-e9cb0397f7b3.jpg" alt="Slide 4">
-    </div>
+    <div class="slide"><img src="images/b959dbc9-c842-4ba0-a21d-ff07cb15d835.jpg" alt="Slide 1"></div>
+    <div class="slide"><img src="images/images/3809fd1d-9420-4b1b-9f18-58d72aa67849.jpg" alt="Slide 2"></div>
+    <div class="slide"><img src="images/92b7b00c-4210-444b-b044-fa8436daa88f.jpg" alt="Slide 3"></div>
+    <div class="slide"><img src="images/8fd43986-d204-4f18-9fe0-e9cb0397f7b3.jpg" alt="Slide 4"></div>
 </div>
 
 <script>
@@ -150,22 +132,15 @@ function createHeart(){
     heart.innerHTML="❤️";
     heart.style.left=Math.random()*100+"vw";
 
-    // adjust size based on screen width
     let screenWidth = window.innerWidth;
-    if(screenWidth>1024){
-        heart.style.fontSize=(20+Math.random()*20)+"px";
-    } else if(screenWidth>768){
-        heart.style.fontSize=(15+Math.random()*10)+"px";
-    } else {
-        heart.style.fontSize=(12+Math.random()*8)+"px";
-    }
+    if(screenWidth>1024){ heart.style.fontSize=(20+Math.random()*20)+"px"; }
+    else if(screenWidth>768){ heart.style.fontSize=(15+Math.random()*10)+"px"; }
+    else{ heart.style.fontSize=(12+Math.random()*8)+"px"; }
 
     heart.style.animationDuration=(3+Math.random()*3)+"s";
     document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    },7000);
+    setTimeout(()=>{ heart.remove(); },7000);
 }
 
 setInterval(createHeart,500);
