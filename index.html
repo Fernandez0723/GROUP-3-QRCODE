@@ -10,98 +10,84 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-font-family:'Montserrat',sans-serif;
-height:100vh;
-overflow:hidden;
-background:black;
+    font-family:'Montserrat',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    background:black;
 }
 
 /* FULLSCREEN GALLERY */
-
 .gallery{
-position:relative;
-width:100%;
-height:100vh;
+    position:relative;
+    width:100%;
+    height:100vh;
 }
 
 /* IMAGES */
-
 .slide{
-position:absolute;
-width:100%;
-height:100%;
-opacity:0;
-animation:fadeSlide 20s infinite;
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    animation:fadeSlide 20s infinite;
 }
 
 .slide img{
-width:100%;
-height:100%;
-object-fit:cover;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* DIFFERENT DELAYS */
-
 .slide:nth-child(1){animation-delay:0s;}
 .slide:nth-child(2){animation-delay:5s;}
 .slide:nth-child(3){animation-delay:10s;}
 .slide:nth-child(4){animation-delay:15s;}
 
 /* FADE ANIMATION */
-
 @keyframes fadeSlide{
-
-0%{
-opacity:0;
-transform:scale(1.1);
-}
-
-10%{
-opacity:1;
-}
-
-25%{
-opacity:1;
-}
-
-35%{
-opacity:0;
-}
-
-100%{
-opacity:0;
-}
-
+    0%{
+        opacity:0;
+        transform:scale(1.1);
+    }
+    10%{
+        opacity:1;
+    }
+    25%{
+        opacity:1;
+    }
+    35%{
+        opacity:0;
+    }
+    100%{
+        opacity:0;
+    }
 }
 
 /* HEART ANIMATION */
-
 .heart{
-position:absolute;
-bottom:-50px;
-color:red;
-font-size:25px;
-animation:floatHeart 6s linear infinite;
+    position:absolute;
+    bottom:-50px;
+    color:red;
+    font-size:25px;
+    animation:floatHeart linear infinite;
 }
 
 @keyframes floatHeart{
-
-0%{
-transform:translateY(0) scale(1);
-opacity:1;
-}
-
-100%{
-transform:translateY(-100vh) scale(1.5);
-opacity:0;
-}
-
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh) scale(1.5);
+        opacity:0;
+    }
 }
 
 </style>
@@ -109,50 +95,48 @@ opacity:0;
 
 <body>
 
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop>
+    <source src="music/El Manu & Jessy Kang - Tahanan (Wedding Version) (Lyrics).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- IMAGE GALLERY -->
 <div class="gallery">
 
-<div class="slide">
-<img src="images/b959dbc9-c842-4ba0-a21d-ff07cb15d835.jpg">
-</div>
+    <div class="slide">
+        <img src="images/b959dbc9-c842-4ba0-a21d-ff07cb15d835.jpg" alt="Slide 1">
+    </div>
 
-<div class="slide">
-<img src="images/images/3809fd1d-9420-4b1b-9f18-58d72aa67849.jpg">
-</div>
+    <div class="slide">
+        <img src="images/images/3809fd1d-9420-4b1b-9f18-58d72aa67849.jpg" alt="Slide 2">
+    </div>
 
-<div class="slide">
-<img src="images/92b7b00c-4210-444b-b044-fa8436daa88f.jpg">
-</div>
+    <div class="slide">
+        <img src="images/92b7b00c-4210-444b-b044-fa8436daa88f.jpg" alt="Slide 3">
+    </div>
 
-<div class="slide">
-<img src="images/8fd43986-d204-4f18-9fe0-e9cb0397f7b3.jpg">
-</div>
+    <div class="slide">
+        <img src="images/8fd43986-d204-4f18-9fe0-e9cb0397f7b3.jpg" alt="Slide 4">
+    </div>
 
 </div>
 
 <script>
 
 /* HEART GENERATOR */
-
 function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    heart.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(heart);
 
-const heart=document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.fontSize=(20+Math.random()*20)+"px";
-
-heart.style.animationDuration=(3+Math.random()*3)+"s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},6000);
-
+    setTimeout(()=>{
+        heart.remove();
+    },7000);
 }
 
 setInterval(createHeart,500);
@@ -161,5 +145,3 @@ setInterval(createHeart,500);
 
 </body>
 </html>
-
-
