@@ -9,7 +9,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
     font-family:'Montserrat',sans-serif;
     height:100vh;
@@ -111,9 +110,8 @@ body{
 <body>
 
 <!-- AUDIO ELEMENT -->
-<audio id="bgMusic" loop autoplay muted playsinline>
+<audio id="bgMusic" loop muted playsinline>
     <source src="El Manu & Jessy Kang - Tahanan (Wedding Version) (Lyrics).mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
 </audio>
 
 <!--<div class="love-center">Our Memories ❤️</div>-->
@@ -140,21 +138,34 @@ function createHeart(){
 
     heart.style.animationDuration=(3+Math.random()*3)+"s";
     document.body.appendChild(heart);
-
     setTimeout(()=>{ heart.remove(); },7000);
 }
 
 setInterval(createHeart,500);
 
-/* UNMUTE & PLAY MUSIC AFTER PAGE LOAD */
-window.addEventListener('load', () => {
+/* SMOOTH AUTOPLAY MUSIC */
+window.addEventListener('load', async () => {
     const music = document.getElementById('bgMusic');
-    music.muted = false;
-    music.play().catch(e => {
+
+    try {
+        // Resume AudioContext
+        const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (AudioCtx.state === 'suspended') await AudioCtx.resume();
+
+        // Play music immediately
+        await music.play();
+
+        // Optional: smooth fade-in
+        music.volume = 0;
+        let vol = 0;
+        const fadeIn = setInterval(()=>{
+            if(vol<1){ vol+=0.02; music.volume = vol; }
+            else{ clearInterval(fadeIn); }
+        }, 100);
+    } catch(e){
         console.log("Autoplay failed, may need user interaction", e);
-    });
+    }
 });
 </script>
 </body>
 </html>
-
